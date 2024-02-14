@@ -1,0 +1,57 @@
+<%-include('../partials/header')%>
+  <%-include('../partials/navbar')%>
+    <%-include('../partials/flash')%>
+
+      <section class="container-fluid position-item1 mt-2">
+        <div class="row g-3">
+          <div class="col-10 mx-auto">
+            <div class="row g-3">
+              <div class="left-user1 col-3">
+                <div class="user1 above-user1">
+                <h6 class="above-hello1"><i class="fa-regular fa-circle-user"></i> Hello, <%=currentUser.firstName.toUpperCase()%></h6>
+                </div>
+                <div class="user1 lower-user1">
+                  <div class="upper-heading1">
+                    <h6><a href=""><i class="fa-solid fa-boxes-packing"></i> My Orders</a></h6>
+                  </div>
+                  <div class="upper-heading1">
+                    <h6><i class="fa-regular fa-address-card"></i> Account Settings</h6>
+                    <div class="heading1">
+                    <h6>Personal Information</h6>
+                    </div>
+                    <div class="heading1">
+                   <h6>Manage Addresses</h6>
+                    </div>
+                  </div>
+                  <div class="upper-heading1">
+                    <h6>My Wishlist</h6>
+                  </div>
+                  <div class="upper-heading1">
+                    <h6>My Reviews & Ratings</h6>
+                  </div>
+                  <div class="upper-heading1">
+                    <h6>Logout</h6>
+                  </div>
+                </div>
+              </div>
+              <div class=" user1 right-user1 col-9">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <%-include('../partials/footer')%>

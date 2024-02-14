@@ -1,0 +1,67 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+<%-include('../partials/flash')%>
+
+<section class="container-fluid position-item1 mt-2">
+  <div class="row g-4">
+    <div class="col-11 col-sm-7 mx-2 p-2 rounded-2">
+      <h6 class="cart-heading1">My Cart</h6>
+      <% for(let item of arr){ %>
+      <div class="row g-2 border mt-4 rounded-2" style="background-color: var(--color-200);position: relative;">
+          <div class="col-5">
+             <img class="cart-img1 rounded-2" src="<%=item.product.frontImg%>" alt="" /> 
+          </div>
+          <div class="col-6">
+              <h5 class="d-block text-truncate cart-title1"><%=item.product.name%></h5>
+              <p class="d-block text-truncate cart-title1">Rs. <%=item.product.price%></p>
+              <div class="cart-delete1">
+                <form action="/user/cart/<%=item.product._id%>?_method=DELETE" method="POST">
+                  <button class="bnt1"><i class="fa-solid fa-xmark"></i></button>
+                </form>
+              </div>
+              <div class="cart-action1">
+                <form action="/user/<%=item.product._id%>/subtract" method="POST">
+                  <button class="btn1 delete-btn1"><i class="fa-solid fa-minus"></i></button>
+                </form>
+                  <p class="card-title">Quantity: <%=item.quantity%></p>
+                <form action="/user/<%=item.product._id%>/add" method="POST">
+                  <button class="btn1 cart-btn1" type="submit"><i class="fa-solid fa-plus"></i></button>
+                 </form>
+              </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+  <div class="col-11 col-sm-4 border mx-auto py-2 rounded-2 px-4" style="background-color: var(--nav-color-200);">
+    <h6 class="cart-heading1">Checkout Section</h6>
+    <ul style="list-style: none;">
+      <% for(let item of arr){ %>
+      <li><span> <%=item.product.name%> --&gt; Rs. <%=item.product.price%> </span></li>
+      <% } %>
+      <li>Total Amount: Rs. <%=totalAmount%></li>
+    </ul>
+    <a class="" href="/checkout/<%=user._id%>"><button class="btn1 border view-btn1">Checkout</button></a>
+      
+  </div>
+  </div>
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%-include('../partials/footer')%>

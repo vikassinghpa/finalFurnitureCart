@@ -1,0 +1,101 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+
+<div class="row" style="margin-top: 80px;">
+  <div class="col-8 mx-auto">
+    <h2 class="display-6 text-center">Add Address</h2>
+      <form class="row g-3 needs-validation" action="/user/<%=currentUser._id%>" method="POST" novalidate>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="house" class="form-label">House No.: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control text-center" id="house" name="houseNumber" required placeholder="Enter Your House Number">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div> 
+      </div>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="street" class="form-label">Street: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control text-center" id="street" name="street" required placeholder="Enter Your Street Address">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="land" class="form-label">Landmark: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control text-center" id="land" name="landMark" placeholder="Back Image of the Product" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div> 
+      </div>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="city" class="form-label">City: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control text-center" id="city" name="city" placeholder="Enter Your City" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div>
+      </div>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="district" class="form-label">District: </label>
+        </div>
+        <div class="col-8">
+          <input type="text" class="form-control text-center" id="district" name="district" placeholder="Enter Your District" required>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div>  
+      </div>
+      <div class="row g-3 align-items-center mt-1">
+        <div class="col-4">
+          <label for="pincode" class="form-label">Pincode: </label>
+        </div>
+        <div class="col-8">
+          <input type="number" class="form-control text-center" id="pincode" name="pincode" required placeholder="Price of the Product">
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please fill required field.
+          </div>
+        </div> 
+      </div>
+      <div class="row g-3 justify-content-center mb-2">
+        <div class="col-3">
+          <button type="submit" class="btn btn-sm btn-primary mt-1">Add</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+
+<%-include('../partials/footer')%>

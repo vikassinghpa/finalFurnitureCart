@@ -1,0 +1,71 @@
+<%-include('../partials/header')%>
+  <%-include('../partials/navbar')%>
+    <%-include('../partials/flash')%>
+
+
+      <section class="container-fluid position-item1 mt-2">
+<div class="row g-4">
+<div class=" upper-filter1 col-4 col-sm-3">
+<div class="main-filter1 filter1">
+  <h6 class="filter-heading1">filter</h6>
+</div>
+<form action="/filter" id="filter-form" method="POST">
+  <div class="upper-filter-select1">
+    <h6 class="filter-select1">Select: </h6>
+    <select id="mySelect" name="selectedValue">
+      <option selected>Select Option</option>
+      <option value="Office-Furniture">Office Furniture</option>
+      <option value="Hotel-Furniture">Hotel Furniture</option>
+      <option value="Restaurant-Furniture">Restaurant Furniture</option>
+      <option value="Shop-Furniture">Shop Furniture</option>
+      <option value="Kitchen-Furniture">Kitchen Furniture</option>
+      <option value="Kids-Furniture">Kids Furniture</option>
+      <option value="Outdoor-Furniture">Outdoor Furniture</option>
+    </select>
+  </div>
+  
+  <div id="filter-form-container1" style="display: none;">
+
+  </div>
+</form>
+
+</div>
+ <div class="col-8 col-sm-9">
+            <div class="row g-1">
+              <% for(let item of products){ %>
+                <div class="col-6 col-sm-4">
+                  <div class="card">
+                    <img class="furniture-img1" src="<%=item.frontImg%>" alt="">
+                    <div class="card-body">
+                      <h5 class="text-truncate d-block card-title">
+                        <%=item.name%>
+                      </h5>
+                      <span class="btn like-btn" productId="<%=item._id%>">
+                        <% if(currentUser && currentUser.wishList.includes(item._id)){ %>
+                          <i class="fa-solid fa-heart"></i>
+                          <% }else{ %>
+                            <i class="fa-regular fa-heart"></i>
+                            <% } %>
+                      </span>
+                      <h5 class="d-block text-truncate card-title">Rs. <%=item.price%>
+                      </h5>
+                      <a href="/products/<%=item._id%>"><button class="btn1 view-btn1">View Detail</button></a>
+                      <% if(currentUser && currentUser.role=='seller' ){ %>
+                        <a href="/products/<%=item._id%>/edit"><button class="btn1 edit-btn1">Edit</button></a>
+                        <form class="d-inline" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+                          <button class="btn1 delete-btn1">Delete</button>
+                        </form>
+                        <% } %>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+            </div>
+ </div>
+</div>
+
+
+
+      </section>
+      <script src="/js/common.js"></script>
+      <%-include('../partials/footer')%>

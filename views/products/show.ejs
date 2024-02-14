@@ -1,0 +1,198 @@
+<%-include('../partials/header')%>
+<%-include('../partials/navbar')%>
+<%-include('../partials/flash')%>
+
+<!-- show particular product details -->
+<div class="position-item1 row mt-2 mx-auto">
+  <div class="col-12 col-sm-6">
+    <div class="upper-show-frontimg1 card">
+      <img src="<%=foundProduct.frontImg%>" alt="" class="show-frontimg1 img-fluid">
+    </div>
+     <div class="upper-show-backimg1">
+      <img class="show-backimg1 img-thumbnail" src="<%=foundProduct.frontImg%>" alt="" style="max-height: 100px;max-width: 100px; margin: 0.25rem;" >
+     <% for(let item of foundProduct.backImg){ %>
+      <img class="show-backimg1 img-thumbnail" src="<%=item%>" alt="" style="max-height: 100px;max-width: 100px; margin: 0.25rem;">
+     <% } %>
+     </div>
+  </div>
+  <div class="col-12 col-sm-5">
+      <div class="mb-3">
+   <h5 class="show-heading1 mt-1"><%=foundProduct.name%></h5>
+   <h5 class="show-heading1 mt-1">Rs.: <%=foundProduct.price%></h5>
+   <form action="/user/<%=foundProduct._id%>/add" method="POST" >
+    <button class="btn1 cart-btn1 border mt-1">Add to Cart</button>
+   </form>
+      </div>
+      <div class="mt-3 mb-2">
+    <h2 class="show-heading1">Leave your review</h2>
+    <form action="/products/<%= foundProduct._id %>/review" method="POST">
+        <div class="">
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="rating" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="rating" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="rating" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="rating" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="rating" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+              </fieldset>
+        </div>
+        <div class="mb-2">
+            <label class="form-label" for="comment">Comment: </label>
+            <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+        </div>
+        <button class="btn1 edit-btn1 border mt-1">Submit</button>
+    </form>
+      </div>  
+  </div>
+</div>
+
+<!-- product descriptions  with review submit forms-->
+<div class="row mt-5">
+  <div class="col-12 col-sm-11 col-lg-10 mt-4 mx-auto border rounded-2">
+    <h5 class="card-title mt-1">Description:</h5>
+    <h6 class="card-title mt-1">Type of Furniture: <%=foundProduct.type.toUpperCase()%></h6>
+    <h6 class="card-title mt-1">Category: <%=foundProduct.category.toUpperCase()%></h6>
+    <h6 class="card-title mt-1">Collection: <%=foundProduct.myCollection.toUpperCase()%></h6>
+    <h6 class="card-title mt-1">Designer: <%=foundProduct.author.firstName.toUpperCase()%></h6>
+    <p class="card-text mt-1 mb-1"><%=foundProduct.about%></p>
+  </div>
+</div>
+
+<!-- reviews that saved and shown -->
+<div class="row g-2 my-4 mx-2">
+ <% if(foundProduct.reviews.length>0){ %>
+  <h6 class="upper-show-heading1">Reviews of <%=foundProduct.name%></h6>
+  <% } %>
+  <% for(let review of foundProduct.reviews){ %>
+  <div class="col-6 col-sm-4 col-lg-3">
+    <div class="card">
+           <div class="card-body">
+            <h5 class="card-title"><%=review.userId.firstName.toUpperCase()%></h5>
+            <% if(review.createdAt){ %>
+              <p class=" text-muted"> <%=review.createdAt.toDateString()%></p>
+            <% } %>
+              <p class="starability-result" data-rating="<%=review.rating%>">
+                   Rated: <%=review.rating%> stars
+              </p>
+             <p class="text-truncate d-block card-text">Comment: <%=review.comment%></p>
+             <form action="/review/<%=foundProduct._id%>/<%=review._id%>?_method=DELETE" method="POST">
+              <button class="btn1 delete-btn1 border">Delete</button>
+             </form>
+           </div>
+    </div>
+  </div>
+  <% } %>
+</div>
+
+<!-- type of products -->
+<div class="row g-2 my-5 mx-2 border p-1 rounded-2">
+  <h6 class="upper-show-heading1"><%=foundProduct.type.toUpperCase()%></h6>
+  <% for(let item of products){ %>
+  <%  if(item.type === foundProduct.type){ %>
+    <div class="col-6 col-sm-4 col-lg-3">
+      <div class="card">
+        <img class="furniture-img1" src="<%=item.frontImg%>" alt="">
+        <div class="card-body">
+          <h5 class="text-truncate d-block card-title">
+            <%=item.name%>
+          </h5>
+          <span class="btn like-btn" productId="<%=item._id%>">
+            <% if(currentUser && currentUser.wishList.includes(item._id)){ %>
+              <i class="fa-solid fa-heart"></i>
+              <% }else{ %>
+                <i class="fa-regular fa-heart"></i>
+                <% } %>
+          </span>
+          <h5 class="d-block text-truncate card-title">Rs. <%=item.price%>
+          </h5>
+          <a href="/products/<%=item._id%>"><button class="btn1 view-btn1">View Detail</button></a>
+          <% if(currentUser && currentUser.role=='seller' ){ %>
+            <a href="/products/<%=item._id%>/edit"><button class="btn1 edit-btn1">Edit</button></a>
+            <form class="d-inline" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+              <button class="btn1 delete-btn1">Delete</button>
+            </form>
+            <% } %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+
+<!-- category of products -->
+<div class="row g-2 my-5 mx-2 border p-1 rounded-2">
+  <h6 class="upper-show-heading1"><%=foundProduct.category.toUpperCase()%></h6>
+  <% for(let item of products){ %>
+    <% if(item.category === foundProduct.category){ %>
+    <div class="col-6 col-sm-4 col-lg-3">
+      <div class="card">
+        <img class="furniture-img1" src="<%=item.frontImg%>" alt="">
+        <div class="card-body">
+          <h5 class="text-truncate d-block card-title">
+            <%=item.name%>
+          </h5>
+          <span class="btn like-btn" productId="<%=item._id%>">
+            <% if(currentUser && currentUser.wishList.includes(item._id)){ %>
+              <i class="fa-solid fa-heart"></i>
+              <% }else{ %>
+                <i class="fa-regular fa-heart"></i>
+                <% } %>
+          </span>
+          <h5 class="d-block text-truncate card-title">Rs. <%=item.price%>
+          </h5>
+          <a href="/products/<%=item._id%>"><button class="btn1 view-btn1">View Detail</button></a>
+          <% if(currentUser && currentUser.role=='seller' ){ %>
+            <a href="/products/<%=item._id%>/edit"><button class="btn1 edit-btn1">Edit</button></a>
+            <form class="d-inline" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+              <button class="btn1 delete-btn1">Delete</button>
+            </form>
+            <% } %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+
+<!-- collection of products -->
+<div class="row g-2 my-5 mx-2 border p-1 rounded-2">
+  <h6 class="upper-show-heading1"><%=foundProduct.myCollection.toUpperCase()%> Collections</h6>
+  <% for(let item of products){ %>
+    <% if(item.myCollection === foundProduct.myCollection){ %>
+    <div class="col-6 col-sm-4 col-lg-3">
+      <div class="card">
+        <img class="furniture-img1" src="<%=item.frontImg%>" alt="">
+        <div class="card-body">
+          <h5 class="text-truncate d-block card-title">
+            <%=item.name%>
+          </h5>
+          <span class="btn like-btn" productId="<%=item._id%>">
+            <% if(currentUser && currentUser.wishList.includes(item._id)){ %>
+              <i class="fa-solid fa-heart"></i>
+              <% }else{ %>
+                <i class="fa-regular fa-heart"></i>
+                <% } %>
+          </span>
+          <h5 class="d-block text-truncate card-title">Rs. <%=item.price%>
+          </h5>
+          <a href="/products/<%=item._id%>"><button class="btn1 view-btn1">View Detail</button></a>
+          <% if(currentUser && currentUser.role=='seller' ){ %>
+            <a href="/products/<%=item._id%>/edit"><button class="btn1 edit-btn1">Edit</button></a>
+            <form class="d-inline" action="/products/<%=item._id%>?_method=DELETE" method="POST">
+              <button class="btn1 delete-btn1">Delete</button>
+            </form>
+            <% } %>
+        </div>
+      </div>
+    </div>
+    <% } %>
+    <% } %>
+</div>
+
+<script src="/js/common.js"></script>
+<%-include('../partials/footer')%>
