@@ -22,4 +22,52 @@ this is my project to show case what i have learn in in journey to learn web dev
 ![WhatsApp Image 2024-02-15 at 10 42 49 AM 2](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/46427e6d-209e-4d72-acc0-68a6898b3328)
 ![WhatsApp Image 2024-02-15 at 10 42 48 AM](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/e6240562-4d6e-4284-b7dc-15b5ec95f1be)
 ![Screenshot 2024-02-15 101755](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/f4e73048-101f-466a-91bc-4710fe5a5138)
+<br/><h1>used dependencies</h1>
+<br/>
+<li>axios </li>
+<h4>Axios is a promise-based HTTP Client for node.js and the browser. It is isomorphic (= it can run in the browser and nodejs with the same codebase). On the server-side it uses the native node.js http module, while on the client (browser) it uses XMLHttpRequests.</h4>
+
+<li>connect-flash</li>
+<h4>The flash is a special area of the session used for storing messages. Messages are written to the flash and cleared after being displayed to the user. The flash is typically used in combination with redirects, ensuring that the message is available to the next page that is to be rendered.</h4>
+
+<li>express</li>
+<h4>Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.</h4>
+
+  <li>express-session</li>
+  <h4>The express-session middleware allows the creation and storage of the session data used for authentication or user preferences. Using this middleware, we can properly maintain the stateful interaction between the Express.js server and the client. Using the sessions the security of the application is maintained and interaction with the user is increased.</h4>
+  
+  <li>mongoose</li>
+  <h4>Mongoose provides a straight-forward, schema-based solution to model your application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.</h4>
+  
+  <li>ejs</li>
+  <h4>ejs and ejs mate both are used for embeded java script.they help to write java script in html file</h4>
+  <li>ejs-mate</li>
+  <h4>ejs and ejs mate both are used for embeded java script.they help to write java script in html file</h4>
+  <li>joi</li>
+  <li>method-override</li>
+  <li>nodemon</li>
+  <h4></h4>
+  <li>passport</li>
+   <h4>passport is a framework hels in authentication of the user who loged in</h4>
+  <li>passport-local</li>
+   <h4>passport-local is the strategy for hashing the password of the user</h4>
+  <li>passport-local-mongoose</li>
+   <h4>it helps in connecting passport with our mongoose  schema</h4>
+  <li>stripe</li>
+   <h4>helps in connecting with our payment gateway
+   </h4>
+  
+   <li>tailwind</li>
+    <h4>it is a css library , help to ease in our css content</h4>
+ 
+
+
+
+
+
+
+
+
+
+
 
