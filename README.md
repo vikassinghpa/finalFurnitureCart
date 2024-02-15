@@ -9,4 +9,5 @@ this is my project to show case what i have learn in in journey to learn web dev
 <h1>look at the basic feature in these screenshots</h1>
 <br/><h3>products page</h3>
 <img src="https://drive.google.com/drive/folders/1hVzrl89t-zU00yXd1TfeaHVCwPSdjD68">
+<img drc="http://drive.google.com/uc?export=view&id=URLIDHere">
 
