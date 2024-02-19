@@ -65,7 +65,7 @@ app.use((req,res,next)=>{
 
 
 app.get('/',(req,res)=>{
-  res.send("hello world")
+  res.render("home");
 })
 
 //Routes
