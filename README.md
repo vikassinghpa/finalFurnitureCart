@@ -8,7 +8,8 @@ this is my project to show case what i have learn in in journey to learn web dev
 <br/>6.Payment gateway
 <h1>look at the basic feature in these screenshots</h1>
 <br/><h3>products page</h3>
-<img src="https://drive.google.com/file/d/1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I/view?usp=sharing">
-<img src="http://drive.google.com/uc?export=view&id=1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I">
- <img src=" https://drive.google.com/thumbnail?id=1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I" >
+<!-- <img src="https://drive.google.com/file/d/1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I/view?usp=sharing">
+<img src="http://drive.google.com/uc?export=view&id=1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I"> -->
+![alt text](29327f40e9c4d26b.webp)
+<img src=" https://drive.google.com/thumbnail?id=1vC5jpBFkq1Bzhb9p38PVNOnMnr9cm77I" >
 

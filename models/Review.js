@@ -1,5 +1,5 @@
 const mongoose =require("mongoose")
-const {Schems} =require('mongoose')
+const {Schema} =require('mongoose')
 
 const reviewSchema = new mongoose.Schema({
   userId:{
