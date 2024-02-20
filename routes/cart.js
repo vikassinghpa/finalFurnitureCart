@@ -3,8 +3,8 @@ const User = require('../models/User');
 const Product = require('../models/Product');
 const Cart = require('../models/Cart');
 const {isLoggedIn} = require('../middleware');
-const stripe = require('stripe')
-('sk_test_51ObzemSAN1sJa92KzbwUGIlfMPC3izaYtvDsO3OplX88TO81eVBWJupn4X3pxtuUWGe7DNdvrinoszkl0lscfWpm00gz3aPWBe')
+const stripe = require('stripe')('sk_test_51OlkmqSAEucVXOAJqFUTN5Am5VWvFQmvB6nqWhn3XV0QyDqGO5z4q3CmVmlH9fK46Uhe8uCxzSuxTG3LxDDnpzMb00BKGtvjva')
+
 const router = express.Router();
 
 //display all cart items
@@ -77,40 +77,40 @@ router.post('/user/:id/add',isLoggedIn , async(req,res)=>{
 })
 
 //substractin the product from cart
-router.post("/user/:id/substract",isLoggedIn ,async(req,res)=>{
-  try{
+// router.post("/user/:id/substract",isLoggedIn ,async(req,res)=>{
+//   try{
 
-    let { id } = req.params;
-    let userId = req.user._id;
-    let user = await User.findById(userId).populate('cart');
-    let product = await Product.findById(id);
+//     let { id } = req.params;
+//     let userId = req.user._id;
+//     let user = await User.findById(userId).populate('cart');
+//     let product = await Product.findById(id);
     
-    let ans=false;
-    let cartId=0;
-    for(let item of user.cart){
-      if(item.product._id== id){
-        ans=true;
-        cartId=item._id;
-      }
-    }
-    if(ans==false){
+//     let ans=false;
+//     let cartId=0;
+//     for(let item of user.cart){
+//       if(item.product._id== id){
+//         ans=true;
+//         cartId=item._id;
+//       }
+//     }
+//     if(ans==false){
       
-      let newCart = new Cart({product});
-      await newCart.save();
+//       let newCart = new Cart({product});
+//       await newCart.save();
       
-      await  user.cart.push(newCart);
-      await user.save();
-      res.redirect("/user/cart");
-    }
-    else{
-      await Cart.findByIdAndUpdate(cartId,{$inc:{quantity:-1}})
-      res.redirect("/user/cart");
-    }
-  }
-  catch(e){
-    res.status(500).render('error',{error:e.message})
-  }
-})
+//       await  user.cart.push(newCart);
+//       await user.save();
+//       res.redirect("/user/cart");
+//     }
+//     else{
+//       await Cart.findByIdAndUpdate(cartId,{$inc:{quantity:-1}})
+//       res.redirect("/user/cart");
+//     }
+//   }
+//   catch(e){
+//     res.status(500).render('error',{error:e.message})
+//   }
+// })
 
 
 //delete from the cart
@@ -132,47 +132,55 @@ router.delete('/user/cart/:id',isLoggedIn ,async(req,res)=>{
   }
   })
   
-//checkout page
-router.get('/checkout/:id',async(req,res)=>{
-let userId = req.user._id;
-let user = await User.findById(userId).populate({path:'cart',populate:{path:'product'}});
-let totalAmount = await user.cart.reduce(async(sumProduct,item)=>{
-let sum = await sumProduct;
-let product = await Product.findById(item.product);
-return sum + (product ? product.price*item.quantity :0)
-},0);
+// checkout page
+router.get('/payment/:id',async(req,res)=>{
+let userId = req.params.id;
 
-const customer = await stripe.customers.create({
-  name: 'Jenny Rosen',
-  address: {
-    line1: '510 Townsend St',
-    postal_code: '98140',
-    city: 'New delhi',
-    state: 'Delhi',
-    country: 'India',
-  },
-})
 
+let user = await User.findById(userId).populate("cart");
+
+let arr=  await Promise.all(user.cart.map(async (item)=>{
+  return {
+    product:await  Product.findById(item.product),
+    quantity:item.quantity
+  } 
+}))
+//stripe
 const session = await stripe.checkout.sessions.create({
-  line_items: [
-    {
+  line_items: arr.map((item)=>{
+    return  {
       price_data: {
         currency: 'inr',
         product_data: {
-          name: 'T-shirt',
+          name: item.product.name,
         },
-        unit_amount: totalAmount*100,
+        unit_amount:(item.product.price*100),
       },
-      quantity: 1,
-    },
-  ],
+      quantity: item.quantity,
+    }
+  })
+  ,
   mode: 'payment',
-  success_url: 'http://localhost:4242/success',
+  success_url: 'http://localhost:8080/paymentSuccess',
   cancel_url: 'http://localhost:4242/cancel',
-  payment_method_types: ['card'],
 });
+//successPayment
+router.get("/paymentSuccess",async(req,res)=>{
+  try{
+    console.log("hii");
+    res.render("cart/paymentSucc") 
+  }
+  catch(e){
+    res.status(500).render('error',{error:e.message})
+  }
+  
+})
+
+// console.log(arr);
 
 res.redirect(303, session.url);
-})
+});
+ 
+
 
 module.exports = router;
