@@ -6,21 +6,21 @@
 }
 :root{
   --color-50:#fdf4ff;
-  --color-100:#fae8ff;
-  --color-200:#f5d0fe;
-  --color-300:#f0abfc;
-  --color-400:#e879f9;
-  --color-500:#d946ef;
+  --color-100:#f3f4f6;
+  --nav-color-200:#64748b;
+  --nav-color-300:#475569;
+  --nav-color-400:#475569;
+  --nav-color-500:#64748b;
   --nav-color-50:#fffbeb;
   --nav-color-100:#fef3c7;
-  --nav-color-200:#fde68a;
-  --nav-color-300:#fcd34d;
-  --nav-color-400:#fbbf24;
-  --nav-color-500:#f59e0b;
-  --btn-color-view:#bef264;
-  --btn-color-edit:#5eead4;
-  --btn-color-cart:#fdba74;
-  --btn-color-del:#fca5a5;
+  --color-200:#f3f4f6;
+  --color-300:#e5e7eb;
+  --color-400:#d1d5db;
+  --color-500:#9ca3af;
+  --btn-color-view:#818cf8;
+  --btn-color-edit:#818cf8;
+  --btn-color-cart:#818cf8;
+  --btn-color-del:#f43f5e;
 }
 body{
   font-size: 16px;
@@ -79,7 +79,7 @@ body::-webkit-scrollbar{
   margin-left: 1rem;
 }
 .nav-address1{
-  color: #000;
+  color:white;
   font-size: 1rem;
   padding: 0.25rem 0.75rem;
 }
@@ -167,7 +167,7 @@ body::-webkit-scrollbar{
   align-items: center;
   justify-content: space-between;
   padding: 0rem 1rem;
-  color: #000;
+  color:white;
   font-size: 1rem;
   font-weight: 500;
 }
@@ -176,10 +176,10 @@ padding: 0.25rem 0.75rem;
 }
 .lower-nav1 a{
   text-decoration: none;
-  color: #000;
+  color: white;
 }
 .lower-nav1:hover{
-  border: 0.5px solid #000;
+  border: 0.5px solid white;
   border-radius: 0.25rem;
 }
 
@@ -259,6 +259,7 @@ padding: 0.25rem 0.75rem;
 .upper-filter1{
   background-color: var(--nav-color-200);
   border-radius: 0.5rem;
+  color: white;
 }
 .filter1{
   margin: 1rem;
@@ -444,6 +445,7 @@ padding: 0.25rem 0.75rem;
 .cart-heading1{
   font-size: 2rem;
   font-weight: 700;
+  color: white;
 }
 .cart-title1{
   font-size: 1.75rem;
