@@ -8,7 +8,9 @@ this is my project to show case what i have learn in in journey to learn web dev
 <br/>6.Payment gateway
 <h1>look at the basic feature in these images</h1>
 <br/><h3>products page</h3>
-![add-product-page](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/13796c02-29e4-49b9-8811-390fac22a6f4)
+<img src="https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/13796c02-29e4-49b9-8811-390fac22a6f4"></img>
+
+<!-- ![add-product-page](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/13796c02-29e4-49b9-8811-390fac22a6f4) -->
 ![after-filter](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/b3cc52bf-b07c-4f94-8472-a7b24d1dbb02)
 ![after-login](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/ccbcf0aa-133d-409c-bb3b-7587cb673379)
 ![cart](https://github.com/vikassinghpa/finalFurnitureCart/assets/141247314/c8b2db67-6b59-4836-a7db-bd2a4f026ae4)
